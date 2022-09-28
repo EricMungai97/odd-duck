@@ -13,24 +13,28 @@
 <body>
   <header>
   <img src="https://place-hold.it/200x70/ddd" alt="">
-  <h1>Odd Duck Product Vote</h1>
+  <h1>Odd Duck Co Product Vote</h1>
 </header>
   <main class="grid-container">
-    <section id="results">
-    <div id="show-results-btn">View Results</div>
-    <ul id="results-container"></ul>
-  </section>
-    <section id="img-container">
-      <div class="imgone"><img id="img-one" src="" alt="" ></div>
-      <div class="imgtwo"><img id="img-two" src="" alt="" ></div>
-      <div class="imgthree"><img id="img-three" src="" alt="" ></div>
-    </section>
-    <div class="empty"></div>
-   <div class ="p-tag">
-    <p></p>
+    <div class="grid-item1" id="img-container">
+      <img id="img-one" src="" alt="" >
+      <img id="img-two" src="" alt="" >
+      <img id="img-three" src="" alt="" >
+    </div>
+    
+    <h2 class="choose">Pick Your Favorite Product! You Have 25 Votes Chose Wisely!</h2>
+      <div id="show-results-btn">
+        Click To View Results</div>
+      <!-- <ul id="results-container"></ul> -->
+      <div class="grid-item2">
+        <canvas id="my-chart"></canvas>
+      </div>
+  
+  <div class="FOOTER">
+    <footer>&copy; 2022 Odd Duck Co</footer>
   </div>
-  </main>
-  <div class="FOOTER"><footer>&copy; 2022 Odd Duck Products</footer></div>
+</main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 
