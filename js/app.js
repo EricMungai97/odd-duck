@@ -46,7 +46,8 @@ function renderImgs() {
       ImgIndexArr.push(randomNumber);
     }
   }
- 
+  console.log(ImgIndexArr);
+
   let imgoneIndex = ImgIndexArr.shift();
   let imgtwoIndex = ImgIndexArr.shift();
   let imgthreeIndex = ImgIndexArr.shift();

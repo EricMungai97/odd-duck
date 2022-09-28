@@ -65,15 +65,18 @@ header img {
 
 #show-results-btn:hover {
   grid-area: results;
-  background-color: hotpink;
-  color: aliceblue;
+  background-color: gold;
+  color: tomato;
   border: 5px solid white;
+  padding-left: 200px;
+
 }
 
 .FOOTER {
   grid-area: FOOTER;
   border: 5px solid white;
-  justify-items: c;
+  padding-left: 200px;
+
 }
 
 #img-container img {
