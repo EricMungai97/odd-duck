@@ -15,6 +15,7 @@ let imgthree = document.getElementById('img-three');
 let canvasElem = document.getElementById('my-chart').getContext('2d');
 
 // ******GLOBALS******
+let ImgIndexArr = [];
 
 let voteCount = 25;
 
@@ -36,7 +37,7 @@ function randomIndex() {
   return Math.floor(Math.random() * productArray.length);
 }
 
-let ImgIndexArr = [];
+
 
 function renderImgs() {
 
@@ -79,8 +80,9 @@ function renderChart() {
     productNames.push(productArray[i].Name);
     productVotes.push(productArray[i].clicks);
     productViews.push(productArray[i].views);
-  }
 
+  }
+  console.log(productVotes);
   // TODO: create a chart object to pass into the Chart constructor call to populate the chart
   let myChartObj = {
     type: 'bar',
