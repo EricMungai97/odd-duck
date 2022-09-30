@@ -15,6 +15,7 @@ let imgthree = document.getElementById('img-three');
 let canvasElem = document.getElementById('my-chart').getContext('2d');
 
 // ******GLOBALS******
+let ImgIndexArr = [];
 
 let voteCount = 25;
 
@@ -36,19 +37,17 @@ function randomIndex() {
   return Math.floor(Math.random() * productArray.length);
 }
 
-// let prevImgIndexArr = [];
+
+
 function renderImgs() {
-  let ImgIndexArr = [];
+
   while (ImgIndexArr.length < 6) {
     let randomNumber = randomIndex();
     if (!ImgIndexArr.includes(randomNumber)) {
       ImgIndexArr.push(randomNumber);
     }
   }
-  console.log('current', ImgIndexArr);
-  // console.log('previous', prevImgIndexArr);
-  // prevImgIndexArr = [ImgIndexArr[0], ImgIndexArr[1], ImgIndexArr[2]];
-
+  console.log(ImgIndexArr);
 
   let imgoneIndex = ImgIndexArr.shift();
   let imgtwoIndex = ImgIndexArr.shift();
@@ -67,6 +66,7 @@ function renderImgs() {
   imgthree.alt = productArray[imgthreeIndex].Name;
 }
 
+// ********CHART FUNCTION*******
 
 function renderChart() {
 
@@ -80,8 +80,9 @@ function renderChart() {
     productNames.push(productArray[i].Name);
     productVotes.push(productArray[i].clicks);
     productViews.push(productArray[i].views);
-  }
 
+  }
+  console.log(productVotes);
   // TODO: create a chart object to pass into the Chart constructor call to populate the chart
   let myChartObj = {
     type: 'bar',
@@ -148,19 +149,23 @@ function handleClick(event) {
     }
   }
 
-
   voteCount--;
-
 
   renderImgs();
 
-
   if (voteCount === 0) {
     imgcontainer.removeEventListener('click', handleClick);
+
+    // ********* LOCAL STORAGE STARTS HERE ************
+    // STEP 1: STRINGIFY THE DATA
+    let stringifiedProducts = JSON.stringify(productArray);
+
+    console.log('stringified products >>>', stringifiedProducts);
+
+    // STEP 2: ADD TO LOCAL STORAGE
+    localStorage.setItem('Products', stringifiedProducts);
   }
 }
-
-
 
 function handleShowResults() {
   // TODO: Display results - once there are no more votes left
@@ -169,26 +174,44 @@ function handleShowResults() {
     showresultsbtn.removeEventListener('click', handleShowResults);
   }
 }
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dragon');
-new Product('dog-duck');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
 
+// STEP 3: PULL DATA OUT OF LOCAL STORAGE
+let retreivedProducts = localStorage.getItem('Products');
+console.log('retreivedProducts >>> ', retreivedProducts);
+
+// STEP 4: PARSE MY DATA INTO CODE MY APP CAN USE
+
+let parsedProducts = JSON.parse(retreivedProducts);
+
+console.log('parsed Goats >>>', parsedProducts);
+
+
+// ****** EXECUTABLE CODE ********
+
+if (retreivedProducts) {
+  productArray = parsedProducts;
+} else {
+
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dragon');
+  new Product('dog-duck');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
+}
 renderImgs();
 
 imgcontainer.addEventListener('click', handleClick);
